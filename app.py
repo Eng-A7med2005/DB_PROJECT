@@ -4,6 +4,7 @@ import os
 import base64
 import traceback
 from datetime import datetime
+from datetime import date
 import sqlite3
 from database import (
     init_db, add_patient, get_patient_by_national_id, get_all_patients,
@@ -147,7 +148,7 @@ def add_patient_page():
     with st.form("add_patient_form"):
         national_id = st.text_input("National ID (Required)")
         name = st.text_input("Full Name (Required)")
-        date_of_birth = st.date_input("Date of Birth", value=None)
+        date_of_birth = st.date_input("Date of Birth", value=None, min_value=date(1950, 1, 1), max_value=date.today())
         gender = st.selectbox("Gender", ["", "Male", "Female", "Other"])
         phone = st.text_input("Phone Number")
         address = st.text_area("Address")
